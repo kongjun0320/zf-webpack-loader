@@ -115,6 +115,7 @@ function iteratePitchingLoaders(
     (err, ...args) => {
       // 如果 pitch 方法有返回值
       if (args.length > 0 && args.some((item) => item)) {
+        loaderContext.loaderIndex--;
         return iterateNormalLoaders(
           processOptions,
           loaderContext,
