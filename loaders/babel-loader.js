@@ -14,9 +14,16 @@ function loader(sourceCode, inputSourceMap, inputAst) {
   };
   const config = babel.loadPartialConfig(options);
   if (config) {
-    const result = babel.transformSync(sourceCode, config.options);
-    //  result.code: 转译后的代码 result.map: sourceMap 映射文件 result.ast: 抽象语法树
-    this.callback(null, result.code, result.map, result.ast);
+    // const result = babel.transformSync(sourceCode, config.options);
+    // //  result.code: 转译后的代码 result.map: sourceMap 映射文件 result.ast: 抽象语法树
+    // this.callback(null, result.code, result.map, result.ast);
+    babel.transformAsync(sourceCode, config.options, (err, result) => {
+      if (err) {
+        this.callback(err);
+      } else {
+        this.callback(null, result.code, result.map, result.ast);
+      }
+    });
     // return result.code;
   }
   return sourceCode;

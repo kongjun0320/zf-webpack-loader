@@ -1,6 +1,6 @@
 const path = require('path');
 const fs = require('fs');
-const { runLoaders } = require('loader-runner');
+const { runLoaders } = require('./loader-runner');
 
 const entryFile = path.resolve(__dirname, 'src/entry.js');
 
@@ -85,8 +85,8 @@ runLoaders(
       console.error(err);
       return;
     }
-    // console.log('==================== ');
-    // console.log(result);
+    console.log('==================== ');
+    console.log(result);
     console.log('==================== ');
     console.log(result.result[0]);
     console.log('==================== ');
